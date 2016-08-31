@@ -5,7 +5,7 @@ node ('master'){
 
     stage 'Compile'
         sh '''
-            jar -cvx myapp.war *
+            jar -cvf myapp.war *
         '''
 
     stage 'Clean Up'

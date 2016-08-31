@@ -1,0 +1,73 @@
+<project name="hodor" default="buildRPM" basedir=".">
+  <description>
+    simple example build file for hodor
+  </description>
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="dist" location="dist"/>
+  <property name="web.dir" location="WebContent/WEB-INF"/>
+  <property name="lib" location="lib"/>
+	
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}"/>
+  </target>
+
+  <target name="compile" depends="init"
+        description="compile the source">
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac srcdir="${src}" classpath="lib/junit-4.11.jar" destdir="${build}"/>
+  </target>
+
+  <target name="dist" depends="junit"
+        description="generate the distribution">
+    <!-- Create the distribution directory -->
+    <mkdir dir="${dist}/lib"/>
+
+    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file 
+    <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/> -->
+  	<war destfile="${dist}/lib/hodor.war" basedir="${build}" webxml="${web.dir}/web.xml"/>
+  </target>
+	
+  <target name="prepareRPM" depends="dist">
+  	<mkdir dir="rpm"/>
+  	<mkdir dir="rpm/BUILD"/>
+  	<mkdir dir="rpm/RPMS"/>
+  	<mkdir dir="rpm/RPMS/noarch"/>
+  	<mkdir dir="rpm/SOURCES"/>
+  	<mkdir dir="rpm/SPECS"/>
+  	<mkdir dir="rpm/SRPMS"/>
+  	<mkdir dir="rpm/tmp"/>
+  	<copy file="${dist}/lib/hodor.war" todir="rpm/SOURCES/"/>
+  	<copy file="lib/hodor.spec" todir="rpm/SPECS/"/>
+  </target>
+	
+  <target name="buildRPM" depends="prepareRPM">
+  	<exec dir="rpm/SPECS" executable="pwd"/>
+  	<exec dir="rpm/SPECS" executable="rpmbuild">
+  	  <arg line="-v -bb hodor.spec"/>
+  	</exec>
+  	<move file="/opt/tomcat/rpmbuild/RPMS/noarch/hodor-0.0.1-0.1.noarch.rpm" todir="rpm"/>
+  </target>
+	
+  <target name="junit" depends="compile">
+	<junit printsummary="yes" haltonfailure="yes" showoutput="yes">
+			<classpath location="${lib}/junit-4.11.jar" />
+	   	    <classpath location="${lib}/hamcrest-core-1.3.jar" />
+	   	    <classpath location="${build}" />
+	  		<formatter type="brief" usefile="false"/>
+	  		<formatter type="xml"/>
+	  		<test name="com.billcloud.web.hodor.MyHodorTest"/>
+	  	</junit>
+  </target>
+
+  <target name="clean"
+        description="clean up">
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
+</project>

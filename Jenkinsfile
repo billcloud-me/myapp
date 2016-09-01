@@ -5,7 +5,7 @@ node ('master'){
 
     stage 'Build and Test'
         env.PATH = "$"tool 'Ant'}/bin:${env.PATH}"
-        sh 'ant build'
+        sh 'ant'
 
     stage 'Compile War'
         sh '''

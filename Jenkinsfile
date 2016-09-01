@@ -11,8 +11,9 @@ node ('master'){
     stage 'Build Tomcat Container'
         sh '''
             echo 'user: '
-            whoami
             docker build -t billcloudme/myapp:devel .
+            docker tag billcloudme/myapp:devel 192.168.1.114:5000/myapp:devel
+            docker push 192.168.1.114:5000/myapp:devel 
         '''
 
     stage 'Clean Up'

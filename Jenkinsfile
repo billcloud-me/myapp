@@ -20,6 +20,9 @@ node ('master'){
             docker push 192.168.1.114:5000/myapp:devel 
         '''
 
+    stage 'Deploy Container'
+        ansiblePlaybook(playbook: '${JENKINS_HOME}/deploy.py')
+
     stage 'Clean Up'
         deleteDir()
 }

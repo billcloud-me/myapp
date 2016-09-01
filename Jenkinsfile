@@ -9,9 +9,9 @@ node ('master'){
         '''
 
     stage 'Build Tomcat Container'
-        sh ```
+        sh '''
             docker build -t billcloudme/myapp:devel .
-        ```
+        '''
 
     stage 'Clean Up'
         deleteDir()

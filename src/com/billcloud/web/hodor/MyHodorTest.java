@@ -10,7 +10,7 @@ public class MyHodorTest {
 	public void testHodor() {
 		MyHodor hodor = new MyHodor();
 		String result = hodor.question();
-		assertEquals("Hodor!", result);
+		assertEquals("Hodor Hodor!", result);
 	}
 
 }

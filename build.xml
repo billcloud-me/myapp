@@ -1,4 +1,4 @@
-<project name="hodor" default="compile" basedir=".">
+<project name="hodor" default="junit" basedir=".">
   <description>
     simple example build file for hodor
   </description>

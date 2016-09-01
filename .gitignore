@@ -2,3 +2,4 @@
 /TEST-com.billcloud.web.hodor.MyHodorTest.xml
 /dist/
 /rpm/
+WebContent/WEB-INF/classes/

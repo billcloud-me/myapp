@@ -10,6 +10,8 @@ node ('master'){
 
     stage 'Build Tomcat Container'
         sh '''
+            echo 'user: '
+            echo `pwd`
             docker build -t billcloudme/myapp:devel .
         '''
 

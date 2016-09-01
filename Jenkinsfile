@@ -5,7 +5,7 @@ node ('master'){
 
     stage 'Compile'
         sh '''
-            jar -cvf myapp.war *
+            jar -cvf myapp.war WebContent/*
         '''
 
     stage 'Build Tomcat Container'

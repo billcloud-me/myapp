@@ -3,7 +3,11 @@ node ('master'){
         deleteDir()
         checkout scm
 
-    stage 'Compile'
+    stage 'Build and Test'
+        env.PATH = "$"tool 'Ant'}/bin:${env.PATH}"
+        sh 'ant build'
+
+    stage 'Compile War'
         sh '''
             jar -cvf myapp.war -C WebContent .
         '''

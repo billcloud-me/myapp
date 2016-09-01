@@ -32,27 +32,6 @@
   	<war destfile="${dist}/lib/hodor.war" basedir="${build}" webxml="${web.dir}/web.xml"/>
   </target>
 	
-  <target name="prepareRPM" depends="dist">
-  	<mkdir dir="rpm"/>
-  	<mkdir dir="rpm/BUILD"/>
-  	<mkdir dir="rpm/RPMS"/>
-  	<mkdir dir="rpm/RPMS/noarch"/>
-  	<mkdir dir="rpm/SOURCES"/>
-  	<mkdir dir="rpm/SPECS"/>
-  	<mkdir dir="rpm/SRPMS"/>
-  	<mkdir dir="rpm/tmp"/>
-  	<copy file="${dist}/lib/hodor.war" todir="rpm/SOURCES/"/>
-  	<copy file="lib/hodor.spec" todir="rpm/SPECS/"/>
-  </target>
-	
-  <target name="buildRPM" depends="prepareRPM">
-  	<exec dir="rpm/SPECS" executable="pwd"/>
-  	<exec dir="rpm/SPECS" executable="rpmbuild">
-  	  <arg line="-v -bb hodor.spec"/>
-  	</exec>
-  	<move file="/opt/tomcat/rpmbuild/RPMS/noarch/hodor-0.0.1-0.1.noarch.rpm" todir="rpm"/>
-  </target>
-	
   <target name="junit" depends="compile">
 	<junit printsummary="yes" haltonfailure="yes" showoutput="yes">
 			<classpath location="${lib}/junit-4.11.jar" />

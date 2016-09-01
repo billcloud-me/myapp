@@ -21,7 +21,7 @@ node ('master'){
         '''
 
     stage 'Deploy Container'
-        ansiblePlaybook(playbook: '${JENKINS_HOME}/deploy.py')
+        ansiblePlaybook(playbook: '${JENKINS_HOME}/deploy.yml')
 
     stage 'Clean Up'
         deleteDir()

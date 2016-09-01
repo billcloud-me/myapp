@@ -1,15 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-2
 	<tomcat-users>
-3
 	    <role rolename="tomcat"/>
-4
 	    <role rolename="role1"/>
-5
 	    <user username="tomcat" password="tomcat" roles="tomcat, manager-gui"/>
-6
 	    <user username="both" password="tomcat" roles="tomcat,role1"/>
-7
 	    <user username="role1" password="tomcat" roles="role1"/>
-8
 	</tomcat-users>

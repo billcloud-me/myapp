@@ -4,7 +4,7 @@ node ('master'){
         checkout scm
 
     stage 'Build and Test'
-        env.PATH = "$"tool 'Ant'}/bin:${env.PATH}"
+        env.PATH = "${tool 'Ant'}/bin:${env.PATH}"
         sh 'ant'
 
     stage 'Compile War'

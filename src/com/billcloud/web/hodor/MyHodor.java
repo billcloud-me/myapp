@@ -4,6 +4,6 @@ public class MyHodor {
 	public String question()
 	{
 		// he needs to always say Hodor!
-		return "Hodor!";
+		return "Hodor Hodor!";
 	}
 }
